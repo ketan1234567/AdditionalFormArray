@@ -1,0 +1,90 @@
+<mat-card>
+    <mat-card-title>Create New Team</mat-card-title>
+    <mat-card-content>
+        <div class="team">
+            <form class="example-form" [formGroup]="teamForm" (ngSubmit)="onFormSubmit()">
+                <mat-form-field class="example-full-width">
+                    <mat-label>TeamName</mat-label>
+                    <input matInput placeholder="TeamName" formControlName="teamName">
+                </mat-form-field>
+                <br>
+                <mat-label *ngIf="teamName?.dirty && teamName?.hasError('required')" class="error">Team name
+                    required.</mat-label>
+                <b> Employees in Team :</b><br><br>
+                <div formArrayName="employees">
+                    <div *ngFor="let emp of employees.controls; let i = index" class="employee">
+                        <p> <b>Employee {{i + 1}} : </b> </p>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>EmpName</mat-label>
+                            <input matInput placeholder="empName" [formControlName]="i">
+                        </mat-form-field>
+                        <br><br>
+       
+                            <br>
+                        <button mat-raised-button color="primary" style="margin: 5px;"
+                            (click)="deleteEmployeeControl(i)" type="submit">Delete</button>
+
+                    </div>
+
+                </div>
+                
+
+
+
+                    <div>
+
+                        <button mat-raised-button color="primary" (click)="addEmployeeControl()" style="margin: 5px;"
+                            >Add Employee</button>
+
+                    </div>
+                    <div>
+
+                        <button mat-raised-button color="primary" (click)="insertEmployeeControl()"
+                            style="margin: 5px;">insertEmployeeControl</button>
+
+                    </div>
+                    <div>
+
+                        <button mat-raised-button color="primary" (click)="patchEmployeeValue()" style="margin: 5px;"
+                           >patchEmployeeValue</button>
+
+                    </div>
+                    <div>
+
+                        <button mat-raised-button color="primary" (click)="setEmployeeValue()" style="margin: 5px;"
+                           >setEmployeeValue</button>
+
+                    </div>
+                    <div>
+
+                        <button mat-raised-button color="primary" (click)="setEmployeeControl()" style="margin: 5px;"
+                            >setEmployeeControl</button>
+
+                    </div>
+                    <div>
+
+                        <button mat-raised-button color="primary" (click)="resetEmployees()" style="margin: 5px;"
+                            >resetEmployees</button>
+
+                    </div>
+                    <div>
+
+                        <button mat-raised-button color="primary" (click)="clearEmployeeControls()" style="margin: 5px;"
+                           >Clear Employee</button>
+
+                    </div>
+
+
+               
+                <div>
+
+                    <button mat-raised-button color="primary" [disabled]="teamForm.invalid" style="margin: 5px;"
+                        type="submit">submit</button>
+
+                </div>
+            </form>
+
+        </div>
+
+    </mat-card-content>
+</mat-card>
